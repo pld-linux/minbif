@@ -1,0 +1,69 @@
+--- gminbif-1.0.2/src/irc/irc.cpp~	2010-04-05 22:49:33.000000000 +0300
++++ gminbif-1.0.2/src/irc/irc.cpp	2010-04-26 20:07:23.224901682 +0300
+@@ -102,7 +102,7 @@
+ 	{
+ 		/* An hostname can't contain any space. */
+ 		b_log[W_ERR] << "'" << _hostname << "' is not a valid server hostname";
+-		throw sock::SockError::SockError("Wrong server hostname");
++		throw sock::SockError("Wrong server hostname");
+ 	}
+ 	else
+ 		setName(_hostname);
+--- gminbif-1.0.2/src/sockwrap/sockwrap.cpp~	2010-04-05 22:49:33.000000000 +0300
++++ gminbif-1.0.2/src/sockwrap/sockwrap.cpp	2010-04-26 20:06:58.161088996 +0300
+@@ -30,9 +30,9 @@
+ 	: config(_config), recv_fd(_recv_fd), send_fd(_send_fd)
+ {
+ 	if (recv_fd < 0)
+-		throw SockError::SockError("Wrong input file descriptor");
++		throw SockError("Wrong input file descriptor");
+ 	if (send_fd < 0)
+-		throw SockError::SockError("Wrong output file descriptor");
++		throw SockError("Wrong output file descriptor");
+ 
+ 	sock_ok = true;
+ }
+@@ -58,11 +58,11 @@
+ 	else if (sec_mode.compare("tls") == 0)
+ 		return new SockWrapperTLS(_config, _recv_fd, _send_fd);
+ 	else if (sec_mode.compare("starttls") == 0)
+-		throw SockError::SockError("Security mode not yet implemented");
++		throw SockError("Security mode not yet implemented");
+ 	else if (sec_mode.compare("starttls-mandatory") == 0)
+-		throw SockError::SockError("Security mode not yet implemented");
++		throw SockError("Security mode not yet implemented");
+ #endif
+-	throw SockError::SockError("unknown security mode");
++	throw SockError("unknown security mode");
+ }
+ 
+ string SockWrapper::GetClientHostname()
+--- gminbif-1.0.2/src/sockwrap/sockwrap_plain.cpp~	2010-04-26 20:07:52.000000000 +0300
++++ gminbif-1.0.2/src/sockwrap/sockwrap_plain.cpp	2010-04-26 20:07:53.820732667 +0300
+@@ -46,9 +46,9 @@
+ 	if ((r = read(recv_fd, buf, sizeof buf - 1)) <= 0)
+ 	{
+ 		if (r == 0)
+-			throw SockError::SockError("Connection reset by peer...");
++			throw SockError("Connection reset by peer...");
+ 		else if(!sockerr_again())
+-			throw SockError::SockError(string("Read error: ") + strerror(errno));
++			throw SockError(string("Read error: ") + strerror(errno));
+ 		else
+ 			sbuf = "";
+ 	}
+@@ -73,12 +73,12 @@
+ 		if (r == 0)
+ 		{
+ 			sock_ok = false;
+-			throw SockError::SockError("Connection reset by peer...");
++			throw SockError("Connection reset by peer...");
+ 		}
+ 		else if(!sockerr_again())
+ 		{
+ 			sock_ok = false;
+-			throw SockError::SockError(string("Read error: ") + strerror(errno));
++			throw SockError(string("Read error: ") + strerror(errno));
+ 		}
+ 	}
+ }
