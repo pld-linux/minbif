@@ -23,6 +23,7 @@ BuildRequires:	imlib2-devel
 BuildRequires:	libcaca-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pidgin-devel >= 2.4
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
