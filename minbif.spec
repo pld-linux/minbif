@@ -9,13 +9,12 @@
 
 Summary:	Minbif - IRC instant messaging gateway
 Name:		minbif
-Version:	1.0.2
+Version:	1.0.3
 Release:	0.2
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://symlink.me/attachments/download/45/%{name}-%{version}.tar.gz
-# Source0-md5:	32418078a1741da3b4028269666f2bac
-Patch0:		gcc.patch
+Source0:	http://symlink.me/attachments/download/50/%{name}-%{version}.tar.gz
+# Source0-md5:	c08add6234a6dd4a45b46b590fa63268
 URL:		http://www.minbif.im/
 BuildRequires:	cmake
 BuildRequires:	glib2
@@ -32,7 +31,6 @@ provide an IRC-friendly instant messaging client.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 install -d build
